@@ -88,6 +88,23 @@ app.get('/', (req, res) => {
     });
 });
 
+// new get endpoint provide the API info to see re-deploy
+app.get('/api/info', (req, res) => {
+    res.json({
+        message: 'Welcome to New Task Management APIto see the re-deploy',
+        version: '1.0.0',
+        endpoints: {
+            health: '/health',
+            register: 'POST /api/register',
+            login: 'POST /api/login',
+            tasks: 'GET /api/tasks (requires auth)',
+            createTask: 'POST /api/tasks (requires auth)',
+            updateTask: 'PUT /api/tasks/:id (requires auth)',
+            deleteTask: 'DELETE /api/tasks/:id (requires auth)'
+        }
+    });
+});
+
 // AUTHENTICATION ROUTES
 
 // POST /api/register - Register new user
