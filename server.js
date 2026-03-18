@@ -5,10 +5,14 @@ const { db, User, Task } = require('./database/setup');
 require('dotenv').config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
+
+// adding cors package and using it as a part of the middleware
+const cors = require('cors');
+app.use(cors());
 
 // JWT Authentication Middleware
 function requireAuth(req, res, next) {
@@ -42,6 +46,8 @@ function requireAuth(req, res, next) {
         }
     }
 }
+
+
 
 // Test database connection
 async function testConnection() {
